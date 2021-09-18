@@ -29,5 +29,20 @@ namespace BoatRide.Controllers
                 return null;
             }
         }
+
+        public bool lagre(Kunde innKunde)
+        {
+
+            try
+            {
+                _db.Kunder.Add(innKunde);
+                _db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
