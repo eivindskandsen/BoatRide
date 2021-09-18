@@ -15,5 +15,7 @@ namespace BoatRide.Models
         }
 
         public DbSet<Kunde> Kunder { get; set; }
+
+        public DbSet<Bilett> Biletter { get; set; }
     }
 }
