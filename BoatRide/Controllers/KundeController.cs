@@ -30,7 +30,7 @@ namespace BoatRide.Controllers
             }
         }
 
-        public bool lagre(Kunde innKunde)
+        public bool lagreKunde(Kunde innKunde)
         {
 
             try
@@ -42,6 +42,19 @@ namespace BoatRide.Controllers
             catch
             {
                 return false;
+            }
+        }
+
+        public Kunde HentEn(int id)
+        {
+            try
+            {
+                Kunde enKunde = _db.Kunder.Find(id);
+                return enKunde;
+            }
+            catch
+            {
+                return null;
             }
         }
     }

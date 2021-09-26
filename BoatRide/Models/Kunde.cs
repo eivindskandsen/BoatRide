@@ -11,6 +11,8 @@ namespace BoatRide.Models
         public int Id { get; set; }
         public string forNavn { get; set; }
         public string etterNavn { get; set; }
+
+        public string email { get; set; }
         
     }
 
