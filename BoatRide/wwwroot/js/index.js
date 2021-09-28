@@ -15,18 +15,15 @@ $(function () {
 });
 
 function lagreKunde() {
-    console.log("HEI")
     const kunde = {
-        etterNavn: $("#forNavn").val(),
-        etterNavn: $("#navn").val(),
+        forNavn: $("#forNavn").val(),
+        etterNavn: $("#etterNavn").val(),
         epost: $("#epost").val()
     }
 
-    $.post("Kunde/lagreKunde", kunde, function (OK){
-        if (OK) {
-            window.location.href = 'bestilling.html'
-        } else {
-            $(".mb - 3 form - check").append("Feil i db")
-        }
-    })
+    console.log(kunde);
+
+    $.post("Kunde/LagreKunde", kunde, function (ok) {
+        console.log(kunde);
+    });
 }

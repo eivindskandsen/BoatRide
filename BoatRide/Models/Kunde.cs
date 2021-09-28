@@ -12,7 +12,7 @@ namespace BoatRide.Models
         public string forNavn { get; set; }
         public string etterNavn { get; set; }
 
-        public string email { get; set; }
+        public string epost { get; set; }
         
     }
 

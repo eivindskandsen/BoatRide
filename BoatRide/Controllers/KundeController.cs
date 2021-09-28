@@ -30,13 +30,11 @@ namespace BoatRide.Controllers
             }
         }
 
-        [HttpPost]
-        public bool lagreKunde([FromBody]Kunde innKunde)
+        public bool LagreKunde(Kunde kunde)
         {
-
             try
             {
-                _db.Kunder.Add(innKunde);
+                _db.Kunder.Add(kunde);
                 _db.SaveChanges();
                 return true;
             }
