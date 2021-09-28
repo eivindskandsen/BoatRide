@@ -10,6 +10,7 @@
     <!--index js script-->
     <script language="JavaScript" type="text/javascript" src="../js/jquery-3.6.0.js"></script>
     <script src="..\js\index.js"></script>
+    <script src="..\js\validering.js"></script>
 
 
 </head>
@@ -63,28 +64,32 @@
 
         <div class="mb-3">
             <label for="forNavn" class="form-label">Fornavn</label>
-            <input type="text" class="form-control" id="forNavn" aria-describedby="forNavnDescribe">
+            <input type="text" class="form-control" id="forNavn" aria-describedby="forNavnDescribe" onchange="validerFornavn(this.value)">
+            <span id="feilForNavn" style="color: red"></span>
             <div id="forNavnHelp" class="form-text">Skriv inn fornavn</div>
 
         </div>
 
         <div class="mb-3">
             <label for="etterNavn" class="form-label">Etternavn</label>
-            <input type="text" class="form-control" id="etterNavn" aria-describedby="etterNavnDescribe">
+            <input type="text" class="form-control" id="etterNavn" aria-describedby="etterNavnDescribe" onchange="validerEtternavn(this.value)">
+            <span id="feilEtterNavn" style="color: red"></span>
             <div id="etterNavnHelp" class="form-text">Skriv inn etternavn</div>
 
         </div>
 
         <div class="mb-3">
-            <label for="epost" class="form-label">Epost</label>
-            <input type="text" class="form-control" id="epost" aria-describedby="epostDescribe">
+            <label for="epost" class="form-label" onchange="validerEpost(this.value)">Epost</label>
+            <input type="text" class="form-control" id="epost" aria-describedby="epostDescribe" onchange="validerEpost(this.value)">
+            <span id="feilEpost" style="color: red"></span>
             <div id="epostHelp" class="form-text">Skriv inn epost</div>
 
         </div>
 
         <div class="mb-3">
             <label for="antall" class="form-label">Antall</label>
-            <input type="text" class="form-control" id="antall" aria-describedby="antallDescribe">
+            <input type="text" class="form-control" id="antall" aria-describedby="antallDescribe" onchange="validerAntall(this.value)">
+            <span id="feilAntall" style="color: red"></span>
             <div id="antallHelp" class="form-text">Skriv inn antall</div>
 
         </div>
