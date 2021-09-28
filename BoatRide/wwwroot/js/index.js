@@ -14,6 +14,28 @@ $(function () {
     });
 });
 
+function lagreKjop() {
+    lagreBillett();
+    lagreKunde();
+}
+
+function lagreBillett() {
+    const billett = {
+        fra: $("#fra").val(),
+        til: $("#til").val(),
+        antall: $("#antall").val(),
+        dag: $("#dag").val(),
+        måned: $("#måned").val(),
+        år: $("#år").val()
+    }
+
+    console.log(billett);
+
+    $.post("Billett/LagreBillett", billett, function (ok) {
+        console.log(billett);
+    });
+}
+
 function lagreKunde() {
     const kunde = {
         forNavn: $("#forNavn").val(),
