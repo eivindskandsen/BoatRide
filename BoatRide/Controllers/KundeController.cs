@@ -11,10 +11,8 @@ namespace BoatRide.Controllers
     [Route("[controller]/[action]")]
     public class KundeController : ControllerBase
     {
-        private readonly KundeDB _db;
         private readonly BoatContext _db;
 
-        public KundeController(KundeDB db)
         public KundeController(BoatContext db)
         {
             _db = db;
@@ -36,7 +34,6 @@ namespace BoatRide.Controllers
         {
             try
             {
-                _db.Kunder.Add(innKunde);
                 _db.Kunder.Add(kunde);
                 _db.SaveChanges();
                 return true;
