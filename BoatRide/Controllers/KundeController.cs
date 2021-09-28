@@ -30,8 +30,6 @@ namespace BoatRide.Controllers
             }
         }
 
-        [HttpPost]
-        public bool lagreKunde([FromBody]Kunde innKunde)
         {
 
             try

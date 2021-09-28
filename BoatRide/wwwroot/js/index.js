@@ -17,9 +17,6 @@ $(function () {
 function lagreKunde() {
     console.log("HEI")
     const kunde = {
-        etterNavn: $("#forNavn").val(),
-        etterNavn: $("#navn").val(),
-        epost: $("#epost").val()
     }
 
     $.post("Kunde/lagreKunde", kunde, function (OK){
