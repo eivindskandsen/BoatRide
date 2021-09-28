@@ -30,5 +30,36 @@ namespace BoatRide.Controllers
                 return false;
             }
         }
+
+        public List<Billett> HentAlleBilletter()
+        {
+            try
+            {
+                var Billettene = _db.Billetter.ToList();
+                return Billettene;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public bool SlettEnBillett(int bid)
+        {
+            try
+            {
+                var billett = _db.Billetter.Find(bid);
+                _db.Billetter.Remove(billett);
+                _db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+
     }
 }
