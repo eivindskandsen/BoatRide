@@ -15,9 +15,10 @@ $(function () {
 });
 
 function lagreKunde() {
+    console.log("HEI")
     const kunde = {
-        id: $("#id").val(),
-        navn: $("#navn").val(),
+        etterNavn: $("#forNavn").val(),
+        etterNavn: $("#navn").val(),
         epost: $("#epost").val()
     }
 
