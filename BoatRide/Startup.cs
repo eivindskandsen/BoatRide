@@ -25,8 +25,8 @@ namespace BoatRide
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddDbContext<KundeDB>(options => options.UseSqlite("Data Source=Kunde.db"));
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddDbContext<BoatContext>(options => options.UseSqlite("Data Source=Boat.db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
