@@ -23,52 +23,41 @@
 
         <div class="mb-3">
             <label for="fra" class="form-label">Fra</label>
-            <input type="text" class="form-control" id="fra" aria-describedby="fraDescribe">
-            <div id="fraHelp" class="form-text">Velg fra destinasjon</div>
-
-            <!-- options knapp-->
-
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown button
-                </button>
+      
+            <!-- list -->
 
                 <label for="list"></label>
-                <input placeholder="text" id="dummy" value=""/>
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select" onchange="getValueSelect()">
                     <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="Oslo">Oslo</option>
+                    <option value="Stavanger">Stavanger</option>
+                    <option value="Bergen">Bergen</option>
+                    <option value="Trondheim">Trondheim</option>
+                    <option value="Tromsø">Tromsø</option>
                 </select>
- 
-                    
-                    
-                    <template id="text"></template>
-                    
-                </ul>
-            </div>
-
-
-
         </div>
+
+
+
+        
         <!--til class-->
 
         <div class="mb-3">
             <label for="til" class="form-label">Til</label>
-            <input type="text" class="form-control" id="til">
-            <div id="tilHelp" class="form-text">Velg til destinasjon</div>
-            <!--options knapp-->
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown button
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-            </div>
+
+            <!--options list-->
+            <label for="list"></label>
+            
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select2" onchange="getValueSelect2()">
+                <option selected>Open this select menu</option>
+                <option value="Oslo">Oslo</option>
+                <option value="Stavanger">Stavanger</option>
+                <option value="Bergen">Bergen</option>
+                <option value="Trondheim">Trondheim</option>
+                <option value="Tromsø">Tromsø</option>
+            </select>
+        
 
         </div>
 

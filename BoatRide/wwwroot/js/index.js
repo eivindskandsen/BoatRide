@@ -29,8 +29,8 @@ function validerSåLagreBillett() {
 
 function lagreBillett() {
     const billett = {
-        fra: $("#fra").val(),
-        til: $("#til").val(),
+        fra: select1,
+        til: select2,
         antall: $("#antall").val(),
         dag: $("#dag").val(),
         måned: $("#måned").val(),
@@ -67,24 +67,27 @@ function lagreKunde() {
     });
 }
 
-function byttNavn() {
+const select1="Not selected"
+function getValueSelect() {
 
-    console.log("Her");
-    /* $("#elementId :selected").val();
-   
-
-};
-
-$('#demolist').on('click', function () {
-
-   $('#dropdownMenuButton1').$(this).text().html;
-});
-
-*/
-    var e = document.getElementById("fra");
+    var e = document.getElementById("select");
     var str = e.value;
 
     console.log(str)
 
+    select1 = str;
+
+
+}
+
+const select2="Not selected"
+function getValueSelect2() {
+
+    var e = document.getElementById("select2");
+    var str = e.value;
+
+    console.log(str)
+
+    select2 = str;
 
 }
