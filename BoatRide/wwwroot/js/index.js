@@ -49,3 +49,25 @@ function lagreKunde() {
         console.log(kunde);
     });
 }
+
+function byttNavn() {
+
+    console.log("Her");
+    /* $("#elementId :selected").val();
+   
+
+};
+
+$('#demolist').on('click', function () {
+
+   $('#dropdownMenuButton1').$(this).text().html;
+});
+
+*/
+    var e = document.getElementById("fra");
+    var str = e.value;
+
+    console.log(str)
+
+
+}
