@@ -1,5 +1,6 @@
 ﻿using BoatRide.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,12 @@ namespace BoatRide.Controllers
     {
         private readonly BoatContext _db;
 
-        public KundeController(BoatContext db)
+        private ILogger<KundeController> _log;
+         
+        public KundeController(BoatContext db, ILogger<KundeController> log)
         {
             _db = db;
+            _log = log;
         }
         public List<Kunde> HentAlle()
         {

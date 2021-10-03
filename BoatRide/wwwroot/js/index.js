@@ -15,8 +15,16 @@ $(function () {
 });
 
 function lagreKjop() {
-    lagreBillett();
-    lagreKunde();
+    validerSåLagreBillett();
+    validerSåLagreKunde();
+}
+
+function validerSåLagreBillett() {
+    const okAntall = validerAntall($("#antall").val());
+
+    if (okAntall) {
+        lagreBillett();
+    }
 }
 
 function lagreBillett() {
@@ -36,6 +44,15 @@ function lagreBillett() {
     });
 }
 
+function validerSåLagreKunde() {
+    const okForNavn = validerFornavn($("#forNavn").val());
+    const okEtterNavn = validerEtternavn($("#etterNavn").val());
+    const okEpost = validerEpost($("#epost").val());
+
+    if (okForNavn && okEtterNavn && okEpost) {
+        lagreKunde();
+    }
+}
 function lagreKunde() {
     const kunde = {
         forNavn: $("#forNavn").val(),

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BoatRide.Models;
+using Microsoft.Extensions.Logging;
 
 namespace BoatRide.Controllers
 {
@@ -11,10 +12,12 @@ namespace BoatRide.Controllers
     public class BillettController : ControllerBase
     {
         private readonly BoatContext _db;
+        private ILogger<BillettController> _log;
 
-        public BillettController(BoatContext db)
+        public BillettController(BoatContext db, ILogger<BillettController> log)
         {
             _db = db;
+            _log = log;
         }
 
         public bool LagreBillett(Billett billett)
@@ -30,5 +33,36 @@ namespace BoatRide.Controllers
                 return false;
             }
         }
+
+        public List<Billett> HentAlleBilletter()
+        {
+            try
+            {
+                var Billettene = _db.Billetter.ToList();
+                return Billettene;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public bool SlettEnBillett(int bid)
+        {
+            try
+            {
+                var billett = _db.Billetter.Find(bid);
+                _db.Billetter.Remove(billett);
+                _db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+
     }
 }
