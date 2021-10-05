@@ -28,6 +28,15 @@ function validerSåLagreBillett() {
 }
 
 function lagreBillett() {
+
+    var date = $("#picker").val();
+    console.log(date)
+    var dag = date.split("/")[1];
+    var måned = date.split("/")[0];
+    var år = date.split("/")[2];
+
+    console.log(dag + måned + år);
+
     const billett = {
         fra: $("#select").val(),
         til: $("#select2").val(),
