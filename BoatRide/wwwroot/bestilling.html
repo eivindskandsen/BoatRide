@@ -4,53 +4,50 @@
     <meta charset="utf-8" />
     <title></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <script src="../js/index.js"></script>
 </head>
-<body>
-    <h1  style="text-align:center;display: block;font-size: 2em;margin-top: 0.67em;margin-bottom: 0.67em;margin-left: 0;margin-right: 0;font-weight: bold;">Thank you for your purchase! Here is your ticket</h1>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h3 style="display: block;font-size: 1.5em;margin-top: 0.67em;margin-bottom: 0.67em;margin-left: 0;margin-right: 0;font-weight: bold;">Costumer</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">E-mail</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="navn">Ola Normann</td>
-                            <td id="epost">OlaNormann@hotmail.no</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col">
-                <h3 style="display: block;font-size: 1.5em;margin-top: 0.67em;margin-bottom: 0.67em;margin-left: 0;margin-right: 0;font-weight: bold;">Order</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Order ID</th>
-                            <th scope="col">From</th>
-                            <th scope="col">To</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="ordre">812934791283749812</td>
-                            <td id="fra">Bergen</td>
-                            <td id="til">Oslo</td>
-                            <td id="dato">24/09-2021</td>
-                            <td id="pris">598</td>
-                        </tr>
-                    </tbody>
-                </table>
+<body style="background-color:Beige">
+    <h1 style="text-align:center;display: block;font-size: 2em;margin-top: 0.67em;margin-bottom: 0.67em;margin-left: 0;margin-right: 0;font-weight: bold;">Ordre</h1>
+    <form>
+        <div class="container">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="forNavn" class="form-label">Fornavn</label>
+                        <input type="text" class="form-control" id="forNavn" aria-describedby="forNavnDescribe" onchange="validerFornavn(this.value)">
+                        <span id="feilForNavn" style="color: red"></span>
+                        <div id="forNavnHelp" class="form-text">Skriv inn fornavn</div>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="etterNavn" class="form-label">Etternavn</label>
+                        <input type="text" class="form-control" id="etterNavn" aria-describedby="etterNavnDescribe" onchange="validerEtternavn(this.value)">
+                        <span id="feilEtterNavn" style="color: red"></span>
+                        <div id="etterNavnHelp" class="form-text">Skriv inn etternavn</div>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="epost" class="form-label" onchange="validerEpost(this.value)">Epost</label>
+                        <input type="text" class="form-control" id="epost" aria-describedby="epostDescribe" onchange="validerEpost(this.value)">
+                        <span id="feilEpost" style="color: red"></span>
+                        <div id="epostHelp" class="form-text">Skriv inn epost</div>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="antall" class="form-label">Antall</label>
+                        <input type="text" class="form-control" id="antall" aria-describedby="antallDescribe" onchange="validerAntall(this.value)">
+                        <span id="feilAntall" style="color: red"></span>
+                        <div id="antallHelp" class="form-text">Skriv inn antall</div>
+
+                    </div>
+                    <button type="button" class="btn btn-primary" onClick="lagreKjop()">Bestill</button>
+                </div>
+                <div class="col"></div>
             </div>
         </div>
-    </div>
+    </form>
 </body>
 </html>

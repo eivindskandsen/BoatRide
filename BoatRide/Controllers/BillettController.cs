@@ -12,26 +12,34 @@ namespace BoatRide.Controllers
     public class BillettController : ControllerBase
     {
         private readonly BoatContext _db;
-        private ILogger<BillettController> _log;
 
-        public BillettController(BoatContext db, ILogger<BillettController> log)
+        private ILogger<KundeController> _log;
+
+
+        public BillettController(BoatContext db, ILogger<KundeController> log)
         {
             _db = db;
             _log = log;
+            
         }
-
+        
         public bool LagreBillett(Billett billett)
         {
-            try
+            if (ModelState.IsValid)
             {
-                _db.Billetter.Add(billett);
-                _db.SaveChanges();
-                return true;
+                try
+                {
+                    _db.Billetter.Add(billett);
+                    _db.SaveChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+            _log.LogInformation("Feil i input valideringen");
+            return false;
         }
 
         public List<Billett> HentAlleBilletter()
