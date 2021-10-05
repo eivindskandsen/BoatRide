@@ -29,8 +29,8 @@ function validerSåLagreBillett() {
 
 function lagreBillett() {
     const billett = {
-        fra: document.getElementById("select").value,
-        til: getValueSelect2(),
+        fra: $("#select").val(),
+        til: $("#select2").val(),
         antall: $("#antall").val(),
         dag: $("#dag").val(),
         måned: $("#måned").val(),
@@ -67,32 +67,12 @@ function lagreKunde() {
     });
 }
 
-var select1="Not selected"
-function getValueSelect() {
-
-    var e = document.getElementById("select");
-    var str = e.value;
-
-    console.log(str)
-
-    select1 = str;
-
-    
 
 
-}
-
-var select2="Not selected"
-function getValueSelect2() {
-
-    var e = document.getElementById("select2");
-    var str = e.value;
-
-    console.log(str)
-
-    select2 = str;
-
-    return str;
-
-
-}
+$(function () {
+    $("#picker").daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true
+        //value: 
+    });
+});
