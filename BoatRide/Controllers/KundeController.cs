@@ -1,5 +1,6 @@
 ﻿using BoatRide.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,11 @@ namespace BoatRide.Controllers
             _db = db;
             _log = log;
         }
-        public List<Kunde> HentAlle()
+        public async Task<List<Kunde>> HentAlle()
         {
             try
             {
-                List<Kunde> alleKundene = _db.Kunder.ToList(); // hent hele tabellen
+                List<Kunde> alleKundene = await _db.Kunder.ToListAsync(); // hent hele tabellen
                 return alleKundene;
             }
             catch
@@ -34,14 +35,14 @@ namespace BoatRide.Controllers
             }
         }
 
-        public bool LagreKunde(Kunde kunde)
+        public async Task<bool> LagreKunde(Kunde kunde)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
                     _db.Kunder.Add(kunde);
-                    _db.SaveChanges();
+                    await _db.SaveChangesAsync();
                     return true;
                 }
                 catch
@@ -54,11 +55,11 @@ namespace BoatRide.Controllers
             
         }
 
-        public Kunde HentEn(int id)
+        public async Task<Kunde> HentEn(int id)
         {
             try
             {
-                Kunde enKunde = _db.Kunder.Find(id);
+                Kunde enKunde = await _db.Kunder.FindAsync(id);
                 return enKunde;
             }
             catch
@@ -66,5 +67,6 @@ namespace BoatRide.Controllers
                 return null;
             }
         }
+
     }
 }

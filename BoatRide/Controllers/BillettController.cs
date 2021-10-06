@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BoatRide.Models;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace BoatRide.Controllers
 {
@@ -20,17 +21,33 @@ namespace BoatRide.Controllers
         {
             _db = db;
             _log = log;
-            
+
         }
-        
-        public bool LagreBillett(Billett billett)
+
+        public async Task<bool> LagreBillett(Billett billett, Kunde innKunde)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _db.Billetter.Add(billett);
-                    _db.SaveChanges();
+                    var kunde = await _db.Kunder.Where(x => x.KId == innKunde.KId).FirstOrDefaultAsync();
+
+                    if(kunde == null)
+                    {
+                        kunde = new Kunde()
+                        {
+                            forNavn = innKunde.forNavn,
+                            etterNavn = innKunde.etterNavn,
+                            Billetter = new List<Billett>(),
+                            epost = innKunde.epost
+                        };
+                        _db.Kunder.Add(kunde);
+                    }
+
+                    kunde.Billetter.Add(billett);
+
+                    //_db.Billetter.Add(billett);
+                    await _db.SaveChangesAsync();
                     return true;
                 }
                 catch
@@ -42,11 +59,11 @@ namespace BoatRide.Controllers
             return false;
         }
 
-        public List<Billett> HentAlleBilletter()
+        public async Task<List<Billett>> HentAlleBilletter()
         {
             try
             {
-                var Billettene = _db.Billetter.ToList();
+                var Billettene = await _db.Billetter.ToListAsync();
                 return Billettene;
             }
             catch
@@ -55,13 +72,13 @@ namespace BoatRide.Controllers
             }
         }
 
-        public bool SlettEnBillett(int bid)
+        public async Task<bool> SlettEnBillett(int bid)
         {
             try
             {
-                var billett = _db.Billetter.Find(bid);
+                var billett = await _db.Billetter.FindAsync(bid);
                 _db.Billetter.Remove(billett);
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
                 return true;
             }
             catch
@@ -70,7 +87,19 @@ namespace BoatRide.Controllers
             }
         }
 
-
+        public async Task<List<Billett>> HentKundesBilletter(int kid)
+        {
+            try
+            {
+                var kunde = await _db.Kunder.FindAsync(kid);
+                return kunde.Billetter;
+            }
+            catch 
+            {
+                return null;
+            }
+        }
 
     }
+
 }
