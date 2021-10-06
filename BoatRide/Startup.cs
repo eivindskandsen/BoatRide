@@ -1,3 +1,4 @@
+using BoatRide.DAL;
 using BoatRide.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,8 @@ namespace BoatRide
         {
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContext<BoatContext>(options => options.UseSqlite("Data Source=Boat.db"));
+            services.AddScoped<IKundeRepository, KundeRepository>();
+            services.AddScoped<IBillettRepository, BillettRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

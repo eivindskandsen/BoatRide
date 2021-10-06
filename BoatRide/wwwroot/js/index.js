@@ -3,26 +3,26 @@
 
 // Write your Javascript code.
 
-$(function () {
-    const id = window.location.search.substring(1);
-    const url = "Kunde/HentEn?" + id;
+//$(function () {
+//    const id = window.location.search.substring(1);
+//    const url = "Kunde/HentEn?" + id;
+//
+//    $.get(url, function (kunde) {
+//        $("#id").val(kunde.id);
+//        $("#Name").val(kunde.forNavn);
+//        $("#Mail").val(kunde.email);
+//    });
+//});
 
-    $.get(url, function (kunde) {
-        $("#id").val(kunde.id);
-        $("#Name").val(kunde.forNavn);
-        $("#Mail").val(kunde.email);
-    });
-});
-
-function lagreKjop() {
+function gaVidere() {
     validerSåLagreBillett();
-    validerSåLagreKunde();
 }
 
 function validerSåLagreBillett() {
     const okAntall = validerAntall($("#antall").val());
+    const OkFraOgTil = validerFraOgTil($("select").val(), $("select2").val());
 
-    if (okAntall) {
+    if (okAntall && OkFraOgTil) {
         lagreBillett();
     }
 }
@@ -50,6 +50,9 @@ function lagreBillett() {
 
     $.post("Billett/LagreBillett", billett, function (ok) {
         console.log(billett);
+    })
+    .fail(function () {
+        $("feil").html("Feil på server - prøv igjen senere");
     });
 }
 
