@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace BoatRide.Models
+{
+    public class LagreBillettRequest
+    {
+        public string forNavn { get; set; }
+        public string etterNavn { get; set; }
+        public string epost { get; set; }
+        public string fra { get; set; }
+        public string til { get; set; }
+        public int antall { get; set; }
+        public int dag { get; set; }
+        public int måned { get; set; }
+        public int år  { get; set; }
+    }
+}

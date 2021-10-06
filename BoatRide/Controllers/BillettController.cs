@@ -24,29 +24,36 @@ namespace BoatRide.Controllers
 
         }
 
-        public async Task<bool> LagreBillett([FromBody]Billett billett, [FromBody]Kunde innKunde)
+        [HttpPost]
+        public async Task<bool> LagreBillett([FromBody]LagreBillettRequest request)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var kunde = await _db.Kunder.Where(x => x.KId == innKunde.KId).FirstOrDefaultAsync();
+                    var kunde = await _db.Kunder.Where(x => x.forNavn == request.forNavn && x.etterNavn == request.etterNavn).FirstOrDefaultAsync();
 
                     if(kunde == null)
                     {
                         kunde = new Kunde()
                         {
-                            forNavn = innKunde.forNavn,
-                            etterNavn = innKunde.etterNavn,
+                            forNavn = request.forNavn,
+                            etterNavn = request.etterNavn,
                             Billetter = new List<Billett>(),
-                            epost = innKunde.epost
+                            epost = request.epost
                         };
                         _db.Kunder.Add(kunde);
                     }
 
-                    kunde.Billetter.Add(billett);
+                    kunde.Billetter.Add(new Billett() { 
+                        fra = request.fra,
+                        til = request.til,
+                        antall = request.antall,
+                        dag = request.dag,
+                        måned = request.måned,
+                        år = request.år
+                    });
 
-                    //_db.Billetter.Add(billett);
                     await _db.SaveChangesAsync();
                     return true;
                 }

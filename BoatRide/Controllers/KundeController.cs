@@ -55,11 +55,11 @@ namespace BoatRide.Controllers
             
         }
 
-        public async Task<Kunde> HentEn(int id)
+        public async Task<Kunde> HentEnKunde(int kid)
         {
             try
             {
-                Kunde enKunde = await _db.Kunder.FindAsync(id);
+                Kunde enKunde = await _db.Kunder.FindAsync(kid);
                 return enKunde;
             }
             catch
