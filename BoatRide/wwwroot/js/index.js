@@ -56,6 +56,7 @@ function lagreBillett() {
     });
 }
 
+
 function validerSåLagreKunde() {
     const okForNavn = validerFornavn($("#forNavn").val());
     const okEtterNavn = validerEtternavn($("#etterNavn").val());
@@ -79,6 +80,7 @@ function lagreKunde() {
     });
     */
 }
+
 
 
 
