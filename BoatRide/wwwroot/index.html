@@ -54,6 +54,7 @@
                     <div class="container mt-5 mb-5" style="width: 400px;">
                         <h3 style="text-align: center;">Date Picker, MM/DD/YYYY</h3>
                         <input type="text" id="picker" class="form-control" />
+                        <span id="feilDate" style="color: red"></span>
                     </div>
                 </div>
 
@@ -68,7 +69,7 @@
                     <!--options list-->
                     <label for="list" style="display: block; text-align: center;">
 
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select2">
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select2" onchange="validerFraOgTil(select.value, select2.value)">
                             <option selected>Open this select menu</option>
                             <option value="Oslo">Oslo</option>
                             <option value="Stavanger">Stavanger</option>
@@ -77,6 +78,7 @@
                             <option value="Tromsø">Tromsø</option>
                         </select>
                     </label>
+                    <span id="feilDestination" style="color: red"></span>
 
                 </div>
 
@@ -90,7 +92,7 @@
 
             
                 <!-- knapp-->
-                <button type="button" class="btn btn-primary" onClick="lagreKjop()">Lagre</button>
+                <button type="button" class="btn btn-primary" onClick="gaVidere()">Lagre</button>
             </form>
 
             </div>

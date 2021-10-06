@@ -22,5 +22,8 @@ function lagreKunde() {
 
     $.post("Kunde/LagreKunde", kunde, function (ok) {
         console.log(kunde);
+    })
+    .fail(function () {
+        $("feil").html("Feil på server - prøv igjen senere");
     });
 }

@@ -6,107 +6,59 @@ using Microsoft.AspNetCore.Mvc;
 using BoatRide.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using BoatRide.DAL;
 
 namespace BoatRide.Controllers
 {
     [Route("[controller]/[action]")]
     public class BillettController : ControllerBase
     {
-        private readonly BoatContext _db;
+        private readonly IBillettRepository _db;
 
-        private ILogger<KundeController> _log;
+        private ILogger<BillettController> _log;
 
-
-        public BillettController(BoatContext db, ILogger<KundeController> log)
+        public BillettController(IBillettRepository db, ILogger<BillettController> log)
         {
             _db = db;
             _log = log;
-
         }
 
-        [HttpPost]
-        public async Task<bool> LagreBillett([FromBody]LagreBillettRequest request)
+        public async Task<ActionResult> LagreBillett([FromBody] LagreBillettRequest request)
         {
             if (ModelState.IsValid)
             {
-                try
+                bool returOK = await _db.LagreBillett(request);
+                if (!returOK)
                 {
-                    var kunde = await _db.Kunder.Where(x => x.forNavn == request.forNavn && x.etterNavn == request.etterNavn).FirstOrDefaultAsync();
-
-                    if(kunde == null)
-                    {
-                        kunde = new Kunde()
-                        {
-                            forNavn = request.forNavn,
-                            etterNavn = request.etterNavn,
-                            Billetter = new List<Billett>(),
-                            epost = request.epost
-                        };
-                        _db.Kunder.Add(kunde);
-                    }
-
-                    kunde.Billetter.Add(new Billett() { 
-                        fra = request.fra,
-                        til = request.til,
-                        antall = request.antall,
-                        dag = request.dag,
-                        måned = request.måned,
-                        år = request.år
-                    });
-
-                    await _db.SaveChangesAsync();
-                    return true;
+                    _log.LogInformation("Billett ble ikke lagret!");
+                    return BadRequest("Billett ble ikke lagret");
                 }
-                catch
-                {
-                    return false;
-                }
+                return Ok("Billett lagret");
             }
-            _log.LogInformation("Feil i input valideringen");
-            return false;
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest("Feil i inputvalidering");
         }
-
-        public async Task<List<Billett>> HentAlleBilletter()
+        public async Task<ActionResult<Billett>> HentAlleBilletter()
         {
-            try
-            {
-                var Billettene = await _db.Billetter.ToListAsync();
-                return Billettene;
-            }
-            catch
-            {
-                return null;
-            }
+            List<Billett> alleBilletter = await _db.HentAlleBilletter();
+            return Ok(alleBilletter);
+            
         }
-
-        public async Task<bool> SlettEnBillett(int bid)
+        public async Task<ActionResult> SlettEnBillett(int bid)
         {
-            try
+            bool returOK = await _db.SlettEnBillett(bid);
+            if (!returOK)
             {
-                var billett = await _db.Billetter.FindAsync(bid);
-                _db.Billetter.Remove(billett);
-                await _db.SaveChangesAsync();
-                return true;
+                _log.LogInformation("Billett ble ikke slettet!");
+                return BadRequest("Billett ble ikke slettet");
             }
-            catch
-            {
-                return false;
-            }
+            return Ok("Billett slettet");
         }
-
-        public async Task<List<Billett>> HentKundesBilletter(int kid)
+        public async Task<ActionResult<Billett>> HentKundesBilletter(int kid)
         {
-            try
-            {
-                var kunde = await _db.Kunder.FindAsync(kid);
-                return kunde.Billetter;
-            }
-            catch 
-            {
-                return null;
-            }
-        }
-
+            List<Billett> kundesBilletter = await _db.HentKundesBilletter(kid);
+            return Ok(kundesBilletter);
+        }  
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using BoatRide.Models;
+﻿using BoatRide.DAL;
+using BoatRide.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -13,60 +14,42 @@ namespace BoatRide.Controllers
     [Route("[controller]/[action]")]
     public class KundeController : ControllerBase
     {
-        private readonly BoatContext _db;
-
+        private readonly IKundeRepository _db;
         private ILogger<KundeController> _log;
-         
-        public KundeController(BoatContext db, ILogger<KundeController> log)
+        public KundeController(IKundeRepository db, ILogger<KundeController> log)
         {
             _db = db;
             _log = log;
         }
-        public async Task<List<Kunde>> HentAlle()
+        public async Task<ActionResult<Kunde>> HentAlle()
         {
-            try
-            {
-                List<Kunde> alleKundene = await _db.Kunder.ToListAsync(); // hent hele tabellen
-                return alleKundene;
-            }
-            catch
-            {
-                return null;
-            }
+            List<Kunde> allekunder = await _db.HentAlle();
+            return Ok(allekunder);
         }
-
-        public async Task<bool> LagreKunde(Kunde kunde)
+        public async Task<ActionResult> LagreKunde(Kunde kunde)
         {
-            if (ModelState.IsValid)
-            {
-                try
+            if (ModelState.IsValid) {
+                bool returOK = await _db.LagreKunde(kunde);
+                if (!returOK)
                 {
-                    _db.Kunder.Add(kunde);
-                    await _db.SaveChangesAsync();
-                    return true;
+                    _log.LogInformation("Kunde ble ikke lagret!");
+                    return BadRequest("Kunde ble ikke lagret");
                 }
-                catch
-                {
-                    return false;
-                }
+                return Ok("Kunde lagret");
             }
-            _log.LogInformation("Feil i input valideringen");
-            return false;
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest("Feil i inputvalidering");
+        }
+        public async Task<ActionResult> HentEnKunde(int kid)
+        {
+            Kunde enKunde = await _db.HentEnKunde(kid);
+            if (enKunde == null)
+            {
+                _log.LogInformation("Fant ingen kunde!");
+                return BadRequest("Fant ingen kunde");
+            }
             
+            return Ok("Kunden funnet");
         }
-
-        public async Task<Kunde> HentEnKunde(int kid)
-        {
-            try
-            {
-                Kunde enKunde = await _db.Kunder.FindAsync(kid);
-                return enKunde;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
     }
 }

@@ -1,4 +1,24 @@
-﻿function validerFornavn(forNavn) {
+﻿function validerFraOgTil(select, select2) {
+    if (select == select2) {
+        $("#feilDestination").html("Til og Fra kan ikke være det samme");
+    } else {
+        $("#feilDestination").html("");
+        return true;
+    }
+}
+function validerAntall(antall) {
+    const regexp = /^[0-9]{1,4}$/;
+    const confirm = regexp.test(antall);
+    if (!confirm) {
+        $("#feilAntall").html("Antall kan kun være tall");
+
+    } else {
+        $("#feilAntall").html("");
+        return true;
+    }
+}
+
+function validerFornavn(forNavn) {
     const regexp = /^[a-zA-ZæøåÆØÅ\.\ \-]{2,30}$/;
     const confirm = regexp.test(forNavn);
     if (!confirm) {
@@ -23,7 +43,7 @@ function validerEtternavn(etternNavn) {
 }
 
 function validerEpost(epost) {
-    const regexp = /^[a-zA-ZæøåÆØÅ0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const regexp = /^[a-zA-ZæøåÆØÅ0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/;
     const confirm = regexp.test(epost);
     if (!confirm) {
         $("#feilEpost").html("Invalid email");
@@ -34,14 +54,3 @@ function validerEpost(epost) {
     }
 }
 
-function validerAntall(antall) {
-    const regexp = /^[0-9]{1,4}$/;
-    const confirm = regexp.test(antall);
-    if (!confirm) {
-        $("#feilAntall").html("Antall kan kun være tall");
-
-    } else {
-        $("#feilAntall").html("");
-        return true;
-    }
-}
