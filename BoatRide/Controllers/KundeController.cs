@@ -36,16 +36,22 @@ namespace BoatRide.Controllers
 
         public bool LagreKunde(Kunde kunde)
         {
-            try
+            if (ModelState.IsValid)
             {
-                _db.Kunder.Add(kunde);
-                _db.SaveChanges();
-                return true;
+                try
+                {
+                    _db.Kunder.Add(kunde);
+                    _db.SaveChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+            _log.LogInformation("Feil i input valideringen");
+            return false;
+            
         }
 
         public Kunde HentEn(int id)
