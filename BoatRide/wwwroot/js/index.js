@@ -41,9 +41,9 @@ function lagreBillett() {
         fra: $("#select").val(),
         til: $("#select2").val(),
         antall: $("#antall").val(),
-        dag: $("#dag").val(),
-        måned: $("#måned").val(),
-        år: $("#år").val()
+        dag: dag,
+        måned: måned,
+        år: år
     }
 
     console.log(billett);
@@ -63,17 +63,18 @@ function validerSåLagreKunde() {
     }
 }
 function lagreKunde() {
-    const kunde = {
-        forNavn: $("#forNavn").val(),
-        etterNavn: $("#etterNavn").val(),
-        epost: $("#epost").val()
+    const info = {
+        til: $("#select").val(),
+        fra: $("#select2").val(),
+        dato: $("#picker").val()
     }
 
-    console.log(kunde);
+    console.log(info);
 
-    $.post("Kunde/LagreKunde", kunde, function (ok) {
+  /*  $.post("Kunde/LagreKunde", kunde, function (ok) {
         console.log(kunde);
     });
+    */
 }
 
 
