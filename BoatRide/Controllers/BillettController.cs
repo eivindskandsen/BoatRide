@@ -24,7 +24,7 @@ namespace BoatRide.Controllers
 
         }
 
-        public async Task<bool> LagreBillett(Billett billett, Kunde innKunde)
+        public async Task<bool> LagreBillett([FromBody]Billett billett, [FromBody]Kunde innKunde)
         {
             if (ModelState.IsValid)
             {
