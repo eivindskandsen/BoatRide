@@ -1,31 +1,5 @@
 ﻿function lagreKjop() {
-    validerSåLagreBillett();
     validerSåLagreKunde();
-}
-
-function validerSåLagreBillett() {
-    const okAntall = validerAntall($("#antall").val());
-
-    if (okAntall) {
-        lagreBillett();
-    }
-}
-
-function lagreBillett() {
-    const billett = {
-        fra: document.getElementById("select").value,
-        til: getValueSelect2(),
-        antall: $("#antall").val(),
-        dag: $("#dag").val(),
-        måned: $("#måned").val(),
-        år: $("#år").val()
-    }
-
-    console.log(billett);
-
-    $.post("Billett/LagreBillett", billett, function (ok) {
-        console.log(billett);
-    });
 }
 
 function validerSåLagreKunde() {
