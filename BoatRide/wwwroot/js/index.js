@@ -14,9 +14,35 @@
 //    });
 //});
 
+$(function () {
+    $("#picker").daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true
+        //value: 
+    });
+});
+
 function gaVidere() {
+
     validerSåLagreBillett();
 }
+
+function goToNext() {
+    var date = $("#picker").val();
+    
+    const bestilling = {
+        fra: $("#select").val(),
+        til: $("#select2").val(),
+        antall: $("#antall").val(),
+        dag: date.split("/")[1],
+        måned: date.split("/")[0],
+        år: date.split("/")[2]
+    }
+    
+    localStorage.setItem("bestilling", JSON.stringify(bestilling));
+    window.location.href = "bestilling.html";
+}
+
 
 function validerSåLagreBillett() {
     const okAntall = validerAntall($("#antall").val());
@@ -80,14 +106,3 @@ function lagreKunde() {
     });
     */
 }
-
-
-
-
-$(function () {
-    $("#picker").daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true
-        //value: 
-    });
-});
