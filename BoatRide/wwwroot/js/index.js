@@ -24,7 +24,7 @@ $(function () {
 
 function gaVidere() {
 
-    validerSåLagreBillett();
+    validerSaaLagreBillett();
 }
 
 function goToNext() {
@@ -44,7 +44,7 @@ function goToNext() {
 }
 
 
-function validerSåLagreBillett() {
+function validerSaaLagreBillett() {
     const okAntall = validerAntall($("#antall").val());
     const OkFraOgTil = validerFraOgTil($("select").val(), $("select2").val());
 
