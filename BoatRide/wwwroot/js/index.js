@@ -32,7 +32,7 @@ function lagreBestilling() {
 function validerSåGåVidere() {
 
     const okAntall = validerAntall($("#antall").val());
-    const OkFraOgTil = validerFraOgTil($("fraDestinasjon").val(), $("tilDestinasjon").val());
+    const OkFraOgTil = validerFraOgTil($("#fraDestinasjon").val(), $("#tilDestinasjon").val());
 
     if (okAntall && OkFraOgTil) {
         lagreBestilling();
