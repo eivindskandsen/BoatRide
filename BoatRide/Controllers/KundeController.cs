@@ -51,5 +51,16 @@ namespace BoatRide.Controllers
             
             return Ok("Kunden funnet");
         }
+
+        public async Task<ActionResult> HentKundePaaNavn(string fornavn, string etternavn) 
+        {
+            var kunde = await _db.HentKundePaaNavn(fornavn, etternavn);
+            if (kunde == null)
+            {
+                _log.LogInformation("Fant ingen kunde!");
+                return BadRequest("Fant ingen kunde");
+            }
+            return Ok(kunde);
+        }
     }
 }
