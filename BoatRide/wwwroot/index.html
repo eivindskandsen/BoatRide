@@ -20,89 +20,96 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 </head>
-<body style="background-color:Beige">>
+<body style="background-image: url('img/geiranger-g6054156d6_1920.jpg');">
    
       
         <div class="container">
             <div class="row">    
                 <div class="col">
-        
-            <!--Tabell -->
-
-            <form>
-                <!--fra class-->
-
-                <div class="mb-3">
-                    <label for="fra" class="form-label" style="display: block; text-align: center; border-top: 10px; padding: 25px;">Fra</label>
 
 
+                    <h1 style="text-align:center;display: block;font-size: 2em;margin-top: 0.67em;margin-bottom: 0.67em;margin-left: 0;margin-right: 0;font-weight: bold; padding:20px;">Reise</h1>
+                    <!--Tabell -->
 
-                    <!-- list -->
+                    <form>
+                        <!--fra class-->
 
-                    <label for="list" style="display: block; text-align: center;">
+                        <div class="mb-3">
+                            <label for="fra" class="form-label" style="display: block; text-align: center; border-top: 20px; ">Fra</label>
 
 
-                        
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select" onchange="validerFraOgTil(select.value, select2.value)">
-                            <option selected>Åpne valgbar meny</option>
 
-                            <option value="Oslo">Oslo</option>
-                            <option value="Stavanger">Stavanger</option>
-                            <option value="Bergen">Bergen</option>
-                            <option value="Trondheim">Trondheim</option>
-                            <option value="Tromsø">Tromsø</option>
-                        </select>
-                    </label>
+                            <!-- list -->
 
-                    <div class="container mt-5 mb-5" style="width: 400px;">
-                        <h3 style="text-align: center;">Dato velger, mm/dd/yyyy</h3>
-                        <input type="text" id="picker" class="form-control" />
-                        <span id="feilDate" style="color: red"></span>
-                    </div>
+                            <label for="list" style="display: block; text-align: center;">
+
+
+
+                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select" onchange="validerFraOgTil(select.value, select2.value)">
+                                    <option selected>Åpne valgbar meny</option>
+
+                                    <option value="Oslo">Oslo</option>
+                                    <option value="Stavanger">Stavanger</option>
+                                    <option value="Bergen">Bergen</option>
+                                    <option value="Trondheim">Trondheim</option>
+                                    <option value="Tromsø">Tromsø</option>
+                                </select>
+                            </label>
+
+                            <div class="container mt-5 mb-5" style="width: 400px;">
+                                <h3 style="text-align: center;">Dato velger, mm/dd/yyyy</h3>
+                                <input type="text" id="picker" class="form-control" />
+                                <span id="feilDate" style="color: red"></span>
+                            </div>
+                        </div>
+
+
+
+
+                        <!--til class-->
+
+                        <div class="mb-3">
+                            <label for="til" class="form-label" style="display: block; text-align: center;">Til</label>
+
+                            <!--options list-->
+                            <label for="list" style="display: block; text-align: center;">
+
+
+
+
+                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select2" onchange="validerFraOgTil(select.value, select2.value)">
+                                    <option selected>Åpne valgbar meny</option>
+
+                                    <option value="Oslo">Oslo</option>
+                                    <option value="Stavanger">Stavanger</option>
+                                    <option value="Bergen">Bergen</option>
+                                    <option value="Trondheim">Trondheim</option>
+                                    <option value="Tromsø">Tromsø</option>
+                                </select>
+                            </label>
+                            <span id="feilDestination" style="color: red"></span>
+
+                        </div>
+
+
+                        <div class="mb-3" style="text-align: center">
+                            <label for="antall" class="form-label" style="display: block; text-align: center;">Antall</label>
+                            <input type="text" class="form-control" id="antall" aria-describedby="antallDescribe" onchange="validerAntall(this.value)" style="width: 200px; display: block; text-align: center; 
+                                margin-right: auto; margin-left: auto;">
+                            <span id="feilAntall" style="color: red"></span>
+                            <div id="antallHelp" class="form-text" style="display: block; text-align: center">Skriv inn antall</div>
+
+
+                        </div>
+
+
+                        <!-- knapp-->
+                        <div style="text-align: center; ">
+                            <button type="button" class="btn btn-primary" onClick="gaVidere()" style="display: block; width: 20%; margin-left: 40%; margin-right: 40%; ">Lagre</button>
+                        </div>
+                    </form>
+
                 </div>
-
-
-
-
-                <!--til class-->
-
-                <div class="mb-3">
-                    <label for="til" class="form-label" style="display: block; text-align: center;">Til</label>
-
-                    <!--options list-->
-                    <label for="list" style="display: block; text-align: center;">
-
-
-                      
-
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select2" onchange="validerFraOgTil(select.value, select2.value)">
-                            <option selected>Åpne valgbar meny</option>
-
-                            <option value="Oslo">Oslo</option>
-                            <option value="Stavanger">Stavanger</option>
-                            <option value="Bergen">Bergen</option>
-                            <option value="Trondheim">Trondheim</option>
-                            <option value="Tromsø">Tromsø</option>
-                        </select>
-                    </label>
-                    <span id="feilDestination" style="color: red"></span>
-
-                </div>
-
-                <div class="mb-3">
-                    <label for="antall" class="form-label" style="display: block; text-align: center;">Antall</label>
-                    <input type="text" class="form-control" id="antall" aria-describedby="antallDescribe" onchange="validerAntall(this.value)">
-                    <span id="feilAntall" style="color: red"></span>
-                    <div id="antallHelp" class="form-text">Skriv inn antall</div>
-
-                </div>
-
-            
-                <!-- knapp-->
-                <button type="button" class="btn btn-primary" onClick="gaVidere()">Lagre</button>
-            </form>
-
-            </div>
         </div>
     </div>
     <!--js script for bootstrap-->

@@ -2,8 +2,7 @@
     //Readyfunction
 });
 
-
-function validerSåLagreKunde() {
+function validerSaaLagreKunde() {
     const okForNavn = validerFornavn($("#forNavn").val());
     const okEtterNavn = validerEtternavn($("#etterNavn").val());
     const okEpost = validerEpost($("#epost").val());

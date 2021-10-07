@@ -30,6 +30,7 @@ function lagreBestilling() {
 
 
 function validerSåGåVidere() {
+
     const okAntall = validerAntall($("#antall").val());
     const OkFraOgTil = validerFraOgTil($("select").val(), $("select2").val());
 
