@@ -1,5 +1,5 @@
 ﻿$(function () {
-    console.log("Readyfunction!");
+    //readyfunction
 });
 
 $(function () {
@@ -17,8 +17,8 @@ function lagreBestilling() {
     var date = $("#picker").val();
     
     const bestilling = {
-        fra: $("#select").val(),
-        til: $("#select2").val(),
+        fra: $("#fraDestinasjon").val(),
+        til: $("#tilDestinasjon").val(),
         antall: $("#antall").val(),
         dag: date.split("/")[1],
         måned: date.split("/")[0],
@@ -32,7 +32,7 @@ function lagreBestilling() {
 function validerSåGåVidere() {
 
     const okAntall = validerAntall($("#antall").val());
-    const OkFraOgTil = validerFraOgTil($("select").val(), $("select2").val());
+    const OkFraOgTil = validerFraOgTil($("fraDestinasjon").val(), $("tilDestinasjon").val());
 
     if (okAntall && OkFraOgTil) {
         lagreBestilling();
