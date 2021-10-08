@@ -78,6 +78,5 @@ function printBilletter(billetter) {
 
 function gaaTilbake() {
     localStorage.removeItem("bestilling");
-    console.log("Hei");
     window.location.href = "index.html";
 }
