@@ -1,8 +1,11 @@
-﻿$(function () { 
-    //hentAlleBilletter();
-    //hentAlleKunder();
-    hentKundePåId(16);
-    hentKundesBilletter(16);
+﻿$(function () {
+    const bestilling = JSON.parse(localStorage.getItem("bestilling"));
+
+    $.get("Kunde/HentKundePaaNavn?fornavn=" + bestilling.forNavn + "&etternavn=" + bestilling.etterNavn, function (kunde){
+        printKunde(kunde);
+        printBilletter(kunde.billetter);
+    });
+
 });
 
 function hentKundePåId(kundeID) {
@@ -71,4 +74,9 @@ function printBilletter(billetter) {
         "<td>" + billett.antall + "</td></tr>"
     )
     $("#billettTabell").html(ut);
+}
+
+function gaaTilbake() {
+    localStorage.removeItem("bestilling");
+    window.location.href = "index.html";
 }

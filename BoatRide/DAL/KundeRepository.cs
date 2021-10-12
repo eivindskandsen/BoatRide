@@ -56,5 +56,18 @@ namespace BoatRide.DAL
                 return null;
             }
         }
+
+        public async Task<Kunde> HentKundePaaNavn(string fornavn, string etternavn)
+        {
+            try
+            {
+                var kunde = await _db.Kunder.Where(x => x.forNavn == fornavn && x.etterNavn == etternavn).FirstOrDefaultAsync();
+                return kunde;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

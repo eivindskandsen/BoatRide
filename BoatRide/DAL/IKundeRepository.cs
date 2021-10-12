@@ -11,6 +11,6 @@ namespace BoatRide.DAL
         Task<List<Kunde>> HentAlle();
         Task<bool> LagreKunde(Kunde kunde);
         Task<Kunde> HentEnKunde(int kid);
-
+        Task<Kunde> HentKundePaaNavn(string fornavn, string etternavn);
     }
 }
