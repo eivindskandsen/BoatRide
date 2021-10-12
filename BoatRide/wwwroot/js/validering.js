@@ -56,6 +56,24 @@ function validerEpost(epost) {
 }
 
 function validerBrukernavn(brukernavn) {
-    const regexp = /^[a-zA-ZæøåÆØÅ0-9]
+    const regexp = /^[a-zA-ZæøåÆØÅ\.\ \-]{2,25}$/;
+    const confirm = regexp.test(brukernavn);
+    if (!confirm) {
+        $("#feilBrukernavn").html("Brukernavnet må bestå av 2 til 25 bokstaver");
+    } else {
+        $("#feilBrukernavn").html("");
+        return true;
+    }
+}
+
+function validerPassord(passord) {
+    const regexp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    const confirm = regexp.test(brukernavn);
+    if (!confirm) {
+        $("#feilPassord").html("Passordet må bestå av minimum 6 tegn, minst en bokstav og et tall");
+    } else {
+        $("#feilPassord").html("");
+        return true;
+    }
 }
 
