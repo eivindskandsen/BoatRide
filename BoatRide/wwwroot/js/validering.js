@@ -68,7 +68,7 @@ function validerBrukernavn(brukernavn) {
 
 function validerPassord(passord) {
     const regexp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
-    const confirm = regexp.test(brukernavn);
+    const confirm = regexp.test(passord);
     if (!confirm) {
         $("#feilPassord").html("Passordet må bestå av minimum 6 tegn, minst en bokstav og et tall");
     } else {
