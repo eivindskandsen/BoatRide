@@ -55,3 +55,7 @@ function validerEpost(epost) {
     }
 }
 
+function validerBrukernavn(brukernavn) {
+    const regexp = /^[a-zA-ZæøåÆØÅ0-9]
+}
+
