@@ -42,14 +42,25 @@ namespace BoatRide.Controllers
         }
         public async Task<ActionResult> HentEnKunde(int kid)
         {
-            Kunde enKunde = await _db.HentEnKunde(kid);
-            if (enKunde == null)
+            Kunde kunde = await _db.HentEnKunde(kid);
+            if (kunde == null)
             {
                 _log.LogInformation("Fant ingen kunde!");
                 return BadRequest("Fant ingen kunde");
             }
             
-            return Ok("Kunden funnet");
+            return Ok(kunde);
+        }
+
+        public async Task<ActionResult> HentKundePaaNavn(string fornavn, string etternavn) 
+        {
+            var kunde = await _db.HentKundePaaNavn(fornavn, etternavn);
+            if (kunde == null)
+            {
+                _log.LogInformation("Fant ingen kunde!");
+                return BadRequest("Fant ingen kunde");
+            }
+            return Ok(kunde);
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿function validerFraOgTil(select, select2) {
-    if (select == select2) {
+﻿function validerFraOgTil(fra, til) {
+    if (fra == til) {
         $("#feilDestination").html("Til og Fra kan ikke være det samme");
+        return false;
     } else {
         $("#feilDestination").html("");
         return true;

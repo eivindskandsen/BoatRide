@@ -1,6 +1,6 @@
-﻿function lagreKjop() {
-    validerSaaLagreKunde();
-}
+﻿$(function () {
+    //Readyfunction
+});
 
 function validerSaaLagreKunde() {
     const okForNavn = validerFornavn($("#forNavn").val());
@@ -8,22 +8,37 @@ function validerSaaLagreKunde() {
     const okEpost = validerEpost($("#epost").val());
 
     if (okForNavn && okEtterNavn && okEpost) {
-        lagreKunde();
+        lagreBestilling();
     }
 }
-function lagreKunde() {
-    const kunde = {
-        forNavn: $("#forNavn").val(),
-        etterNavn: $("#etterNavn").val(),
-        epost: $("#epost").val()
+
+
+function lagreBestilling() {
+    const innBestilling = JSON.parse(localStorage.getItem("bestilling"));
+
+    const utvidetBestilling = {
+        forNavn : $("#forNavn").val(),
+        etterNavn : $("#etterNavn").val(),
+        epost : $("#epost").val(),
+        fra : innBestilling.fra,
+        til : innBestilling.til,
+        antall : innBestilling.antall,
+        dag : innBestilling.dag,
+        måned : innBestilling.måned,
+        år : innBestilling.år
     }
 
-    console.log(kunde);
+    const bestilling = JSON.stringify(utvidetBestilling);
 
-    $.post("Kunde/LagreKunde", kunde, function (ok) {
-        console.log(kunde);
-    })
-    .fail(function () {
-        $("feil").html("Feil på server - prøv igjen senere");
+    localStorage.setItem("bestilling", bestilling);
+
+    $.ajax({
+        type: "POST",
+        url: "Billett/LagreBillett/",
+        data: bestilling,
+        success: () => {
+            console.log("Success!"), window.location.href = "oversikt.html"},
+        error: () => { $("#feil").html("Feil på server - prøv igjen senere")},
+        contentType: "application/json"
     });
 }
